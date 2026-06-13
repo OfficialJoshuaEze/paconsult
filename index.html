@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="P&A Consulting Limited — Delivering Projects, Building Capacity, Strengthening Institutions across Africa and beyond." />
+  <title>P&A Consulting Limited</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <!-- FIX 1: Preload hero bg image so it's ready on first paint (LCP improvement) -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80&fit=crop" fetchpriority="high" />
+
+<style>
+/* ═══════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0B1C3D;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+:root {
+  --navy:   #0B1C3D;
+  --deep:   #0D2350;
+  --mid:    #1A3A6B;
+  --accent: #2563EB;
+  --bright: #3B82F6;
+  --gold:   #F59E0B;
+  --nav-h:  72px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--bright);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ═══════════════════════════════════════
+   SHARED SECTION UTILITIES
+═══════════════════════════════════════ */
+.section-wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.section-tag .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.section-heading { font-family: 'Sora', sans-serif; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; }
+
+.btn-solid-accent {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px; background: var(--accent); color: #fff;
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 4px 24px rgba(37,99,235,0.35); cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+}
+.btn-solid-accent:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
+.btn-outline-white {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px; background: transparent; color: #fff;
+  font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  transition: border-color 0.25s, background 0.25s, transform 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+.btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+.btn-outline-navy {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px; background: transparent; color: var(--navy);
+  font-size: 0.9rem; font-weight: 600; text-decoration: none; border: 1.5px solid var(--navy);
+  transition: background 0.25s, color 0.25s, transform 0.2s; cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+.btn-outline-navy:hover { background: var(--navy); color: #fff; transform: translateY(-2px); }
+.btn-solid-white {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 50px; background: #fff; color: var(--navy);
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.btn-solid-white:hover { background: #f0f4ff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+.arr-icon { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.2s; }
+a:hover .arr-icon, button:hover .arr-icon { transform: translateX(3px); }
+
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ═══════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h); z-index: 100;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease;
+}
+#navbar.scrolled {
+  background: rgba(11,28,61,0.88); backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 24px rgba(0,0,0,0.35);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; height: 100%;
+  padding: 0 24px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem;
+  letter-spacing: -0.01em; color: #fff; text-decoration: none; white-space: nowrap;
+}
+.nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 450; color: rgba(255,255,255,0.80);
+  text-decoration: none; padding: 6px 12px; border-radius: 6px;
+  transition: color 0.2s, background 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+/* FIX 5: Active nav link state for scroll-spy */
+.nav-links a.active {
+  color: #fff; background: rgba(255,255,255,0.11);
+}
+.btn-nav {
+  display: inline-flex; align-items: center; padding: 9px 20px; border-radius: 8px;
+  background: #fff; color: var(--navy) !important; font-size: 0.875rem !important;
+  font-weight: 600 !important; text-decoration: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.btn-nav:hover { background: #f0f4ff !important; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.22) !important; color: var(--navy) !important; }
+.btn-nav.active { background: #f0f4ff !important; }
+#hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 5px; width: 40px; height: 40px; cursor: pointer;
+  background: transparent; border: none; padding: 4px; border-radius: 6px;
+  transition: background 0.2s;
+}
+#hamburger:hover { background: rgba(255,255,255,0.1); }
+.bar {
+  display: block; width: 24px; height: 2px; background: #fff;
+  border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
+}
+#hamburger.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#hamburger.open .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#hamburger.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* FIX 6: Mobile menu outside-click overlay */
+#menu-overlay {
+  position: fixed; inset: 0; top: var(--nav-h);
+  background: rgba(0,0,0,0.35); z-index: 98;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#menu-overlay.open { opacity: 1; pointer-events: all; }
+#mobile-menu {
+  position: fixed; inset: 0; top: var(--nav-h);
+  background: rgba(11,28,61,0.97); backdrop-filter: blur(24px);
+  z-index: 99; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+#mobile-menu.open { transform: translateX(0); }
+#mobile-menu a {
+  font-family: 'Sora', sans-serif; font-size: 1.5rem; font-weight: 600;
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  padding: 12px 28px; border-radius: 10px; transition: color 0.2s, background 0.2s;
+}
+#mobile-menu a:hover, #mobile-menu a.active { color: #fff; background: rgba(255,255,255,0.07); }
+#mobile-menu .btn-mob-cta {
+  margin-top: 24px; padding: 14px 40px; border-radius: 50px;
+  background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   TOAST NOTIFICATION
+═══════════════════════════════════════ */
+/* FIX 14: Coming-soon toast for placeholder links */
+.toast {
+  position: fixed; bottom: 96px; right: 28px; z-index: 400;
+  background: rgba(7,14,31,0.96); color: #fff;
+  padding: 11px 22px; border-radius: 50px;
+  font-size: 0.84rem; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  transform: translateY(12px); opacity: 0;
+  transition: opacity 0.25s, transform 0.25s; pointer-events: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast-icon { width: 16px; height: 16px; color: #60a5fa; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   WHATSAPP FAB
+═══════════════════════════════════════ */
+/* FIX 7: WhatsApp floating action button */
+.wa-fab {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.40);
+  transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
+}
+.wa-fab:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
+.wa-fab svg { color: #fff; }
+.wa-fab-label {
+  position: absolute; right: 66px;
+  background: rgba(7,14,31,0.9); color: #fff;
+  font-size: 0.75rem; font-weight: 600;
+  padding: 6px 12px; border-radius: 50px;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; backdrop-filter: blur(8px);
+}
+.wa-fab:hover .wa-fab-label { opacity: 1; }
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80&fit=crop');
+  background-size: cover; background-position: center 30%;
+  transform: scale(1.04); transition: transform 8s ease-out;
+}
+#hero.loaded .hero-bg { transform: scale(1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(108deg,rgba(11,28,61,0.97) 0%,rgba(13,35,80,0.93) 35%,rgba(18,46,95,0.82) 58%,rgba(26,58,107,0.55) 80%,rgba(26,58,107,0.30) 100%);
+  z-index: 1;
+}
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat; background-size: 200px 200px;
+  z-index: 2; opacity: 0.4; pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 3; width: 100%;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  padding-top: calc(var(--nav-h) + 48px); padding-bottom: 80px;
+}
+.hero-headline {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.1rem);
+  font-weight: 800; line-height: 1.12; letter-spacing: -0.025em;
+  color: #fff; max-width: 700px; margin-bottom: 20px;
+}
+.hero-sub {
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem); font-weight: 400; line-height: 1.65;
+  color: rgba(255,255,255,0.70); max-width: 540px; margin-bottom: 40px; letter-spacing: 0.01em;
+}
+.cta-group { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 56px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; border-radius: 50px; background: #fff; color: var(--navy);
+  font-size: 0.9rem; font-weight: 600; letter-spacing: 0.01em; text-decoration: none;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+}
+.btn-primary:hover { background: #f0f4ff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.32); }
+.btn-primary .btn-icon {
+  color: #f0f4ff; display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--navy);
+  flex-shrink: 0; transition: background 0.2s, transform 0.2s;
+}
+.btn-primary:hover .btn-icon { transform: translateX(2px); background: var(--accent); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; border-radius: 50px; background: transparent; color: #fff;
+  font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+.btn-secondary .ext-icon { width: 18px; height: 18px; opacity: 0.8; transition: opacity 0.2s, transform 0.2s; }
+.btn-secondary:hover .ext-icon { opacity: 1; transform: translate(2px,-2px); }
+.trust-bar { display: flex; align-items: center; gap: 16px; }
+.avatar-stack { display: flex; align-items: center; }
+/* FIX 9: Self-hosted initials avatars (no randomuser.me dependency) */
+.avatar-init {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2.5px solid rgba(11,28,61,0.9);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.68rem; font-weight: 700;
+  color: rgba(255,255,255,0.92); font-family: 'Sora', sans-serif;
+  margin-left: -10px; flex-shrink: 0; transition: transform 0.2s;
+}
+.avatar-init:first-child { margin-left: 0; }
+.avatar-init:hover { transform: scale(1.08) translateY(-2px); z-index: 10; }
+.av1 { background: #1e40af; }
+.av2 { background: #065f46; }
+.av3 { background: #92400e; }
+.trust-text { display: flex; flex-direction: column; gap: 2px; }
+.stars { display: flex; gap: 3px; }
+.star { color: var(--gold); font-size: 0.9rem; }
+.trust-label { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.3; }
+.trust-label strong { font-weight: 600; color: rgba(255,255,255,0.88); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-1 { animation: fadeUp 0.72s cubic-bezier(0.22,1,0.36,1) 0.15s both; }
+.anim-2 { animation: fadeUp 0.72s cubic-bezier(0.22,1,0.36,1) 0.30s both; }
+.anim-3 { animation: fadeUp 0.72s cubic-bezier(0.22,1,0.36,1) 0.45s both; }
+.anim-4 { animation: fadeUp 0.72s cubic-bezier(0.22,1,0.36,1) 0.60s both; }
+.scroll-cue {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  z-index: 4; display: flex; flex-direction: column; align-items: center;
+  gap: 6px; opacity: 0.45; cursor: pointer; transition: opacity 0.2s;
+}
+.scroll-cue:hover { opacity: 0.75; }
+.scroll-cue span { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.scroll-line {
+  width: 1.5px; height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.4; transform: scaleY(1); }
+  50%      { opacity: 0.9; transform: scaleY(0.6); }
+}
+
+/* ═══════════════════════════════════════
+   STATS / COUNTER SECTION
+═══════════════════════════════════════ */
+#stats {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2045 50%, #0f2655 100%);
+  padding: 80px 0; position: relative; overflow: hidden;
+}
+#stats::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(37,99,235,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+#stats::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px; pointer-events: none;
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; position: relative; z-index: 1;
+}
+.stat-item {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 48px 24px; position: relative; text-align: center;
+  transition: background 0.3s;
+}
+.stat-item:not(:last-child)::after {
+  content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 60%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+}
+.stat-item:hover { background: rgba(255,255,255,0.03); }
+.stat-icon-wrap {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; transition: background 0.3s, border-color 0.3s;
+}
+.stat-item:hover .stat-icon-wrap { background: rgba(37,99,235,0.25); border-color: rgba(37,99,235,0.5); }
+.stat-icon-wrap svg { color: #60a5fa; }
+.stat-number {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em;
+  color: #fff; line-height: 1; margin-bottom: 8px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-suffix {
+  font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-label {
+  font-size: 0.75rem; font-weight: 500; color: rgba(255,255,255,0.55);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════════════
+   ABOUT SECTION
+═══════════════════════════════════════ */
+#about { background: #ffffff; padding: 100px 0; color: var(--navy); }
+.about-eyebrow { color: var(--accent); }
+.about-heading {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  letter-spacing: -0.025em; line-height: 1.1; color: var(--navy); max-width: 600px; margin-bottom: 28px;
+}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-text-col { display: flex; flex-direction: column; }
+.about-body { font-size: 1rem; line-height: 1.8; color: #4b5563; margin-bottom: 20px; }
+.about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 36px; }
+.about-pillar {
+  display: flex; align-items: flex-start; gap: 12px; padding: 16px; border-radius: 12px;
+  background: #f8faff; border: 1px solid #e5edff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.about-pillar:hover { border-color: #bfccff; box-shadow: 0 4px 16px rgba(37,99,235,0.08); }
+.pillar-icon {
+  width: 36px; height: 36px; border-radius: 8px; background: rgba(37,99,235,0.1);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+}
+.pillar-icon svg { color: var(--accent); }
+.pillar-text h4 { font-family: 'Sora', sans-serif; font-size: 0.825rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.pillar-text p { font-size: 0.78rem; color: #6b7280; line-height: 1.4; }
+.about-img-col { position: relative; }
+.about-img-main {
+  width: 100%; border-radius: 20px; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(11,28,61,0.14); aspect-ratio: 4/5; position: relative;
+}
+.about-img-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.about-img-main:hover img { transform: scale(1.03); }
+.about-float-card {
+  position: absolute; bottom: -24px; left: -28px;
+  background: #fff; border-radius: 16px; padding: 20px 24px;
+  box-shadow: 0 12px 40px rgba(11,28,61,0.14);
+  display: flex; align-items: center; gap: 16px; min-width: 220px;
+  border: 1px solid rgba(37,99,235,0.1); z-index: 2;
+}
+.float-card-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #1d4ed8);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.float-card-icon svg { color: #fff; }
+.float-card-text .fct-num { font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--navy); line-height: 1; }
+.float-card-text .fct-label { font-size: 0.75rem; color: #6b7280; font-weight: 500; margin-top: 2px; }
+.about-img-col::before {
+  content: ''; position: absolute; top: -20px; right: -20px;
+  width: 70%; height: 70%;
+  background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(37,99,235,0.02));
+  border-radius: 20px; z-index: -1; border: 1px solid rgba(37,99,235,0.12);
+}
+
+/* ═══════════════════════════════════════
+   SERVICES SECTION
+═══════════════════════════════════════ */
+#services {
+  background: linear-gradient(160deg, #091529 0%, #0d2045 40%, #0f2655 70%, #111c3a 100%);
+  padding: 100px 0; position: relative; overflow: hidden;
+}
+#services::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.09) 0%, transparent 70%); pointer-events: none;
+}
+.services-header { text-align: center; max-width: 620px; margin: 0 auto 60px; }
+.services-eyebrow { color: #60a5fa; }
+.services-heading {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800;
+  letter-spacing: -0.025em; color: #fff; margin-bottom: 16px;
+}
+.services-sub { font-size: 1rem; color: rgba(255,255,255,0.58); line-height: 1.7; }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px; }
+.service-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 36px; display: flex; flex-direction: column;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: default; position: relative; overflow: hidden;
+}
+.service-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.service-card:hover {
+  background: rgba(255,255,255,0.07); border-color: rgba(37,99,235,0.4);
+  transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(37,99,235,0.15);
+}
+.service-card:hover::after { opacity: 1; }
+.service-num { font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700; color: rgba(37,99,235,0.6); letter-spacing: 0.1em; margin-bottom: 20px; }
+.svc-icon-wrap {
+  width: 56px; height: 56px; border-radius: 16px; background: rgba(37,99,235,0.12);
+  border: 1px solid rgba(37,99,235,0.25); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; transition: background 0.3s;
+}
+.service-card:hover .svc-icon-wrap { background: rgba(37,99,235,0.22); }
+.svc-icon-wrap svg { color: #60a5fa; }
+.svc-title { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.svc-desc { font-size: 0.9rem; color: rgba(255,255,255,0.58); line-height: 1.7; flex: 1; }
+.svc-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 24px; font-size: 0.85rem; font-weight: 600;
+  color: #60a5fa; text-decoration: none; background: none; border: none;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; padding: 0;
+  transition: gap 0.2s, color 0.2s;
+}
+.svc-link:hover { gap: 12px; color: #93c5fd; }
+.services-cta { text-align: center; }
+
+/* ═══════════════════════════════════════
+   ACADEMY SECTION
+═══════════════════════════════════════ */
+#academy { background: #f8faff; padding: 100px 0; color: var(--navy); }
+.academy-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 16px; flex-wrap: wrap; gap: 24px;
+}
+.academy-heading { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.025em; color: var(--navy); }
+.academy-sub { font-size: 1rem; color: #6b7280; max-width: 460px; margin-top: 8px; line-height: 1.6; }
+.academy-eyebrow { color: var(--accent); }
+/* FIX 13: Currency toggle for course prices */
+.currency-row { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+.currency-note { font-size: 0.75rem; color: #9ca3af; }
+.currency-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 50px;
+  border: 1.5px solid var(--accent); background: transparent; color: var(--accent);
+  font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: background 0.2s, color 0.2s;
+}
+.currency-btn:hover { background: var(--accent); color: #fff; }
+.courses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 48px; }
+.course-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  border: 1px solid #e9eef8; box-shadow: 0 2px 16px rgba(11,28,61,0.06);
+  display: flex; flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.course-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(11,28,61,0.12); border-color: #c7d7ff; }
+.course-img { aspect-ratio: 16/9; overflow: hidden; position: relative; }
+.course-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.course-card:hover .course-img img { transform: scale(1.07); }
+.course-badge {
+  position: absolute; top: 12px; left: 12px;
+  padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.badge-new { background: rgba(37,99,235,0.9); color: #fff; }
+.badge-pop { background: rgba(245,158,11,0.9); color: #fff; }
+.badge-adv { background: rgba(16,185,129,0.9); color: #fff; }
+.badge-pro { background: rgba(139,92,246,0.9); color: #fff; }
+.course-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.course-category { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.course-title { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 10px; flex: 1; }
+.course-meta { display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: #9ca3af; margin-bottom: 14px; }
+.course-meta span { display: flex; align-items: center; gap: 4px; }
+.course-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid #f0f4ff; }
+.course-price { font-family: 'Sora', sans-serif; font-size: 1rem; font-weight: 800; color: var(--navy); }
+/* FIX 15: Enrol Now links now pre-fill the contact form */
+.course-enroll {
+  font-size: 0.78rem; font-weight: 600; color: var(--accent);
+  text-decoration: none; display: flex; align-items: center; gap: 5px;
+  cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; padding: 0;
+  transition: gap 0.2s;
+}
+.course-enroll:hover { gap: 9px; }
+.academy-cta { text-align: center; }
+
+/* ═══════════════════════════════════════
+   PROJECTS SECTION
+═══════════════════════════════════════ */
+#projects {
+  background: linear-gradient(155deg, #071020 0%, #0b1c3d 35%, #0f2655 65%, #0a1935 100%);
+  padding: 100px 0; position: relative; overflow: hidden;
+}
+#projects::after {
+  content: ''; position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(37,99,235,0.07) 0%, transparent 70%); pointer-events: none;
+}
+.projects-header { text-align: center; max-width: 620px; margin: 0 auto 60px; }
+.projects-eyebrow { color: #60a5fa; }
+.projects-heading { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.025em; color: #fff; margin-bottom: 16px; }
+.projects-sub { font-size: 1rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.project-card {
+  border-radius: 20px; overflow: hidden; position: relative;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s; cursor: default;
+}
+.project-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.4); border-color: rgba(37,99,235,0.35); }
+.project-img { aspect-ratio: 4/3; overflow: hidden; position: relative; }
+.project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.project-card:hover .project-img img { transform: scale(1.08); }
+.project-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(7,16,32,0.85) 100%); }
+.project-sector { position: absolute; top: 14px; left: 14px; padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; background: rgba(37,99,235,0.75); color: #fff; backdrop-filter: blur(6px); }
+.project-body { padding: 24px; }
+.project-title { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.4; }
+.project-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.65; margin-bottom: 18px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tag { padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; background: rgba(37,99,235,0.12); color: #93c5fd; border: 1px solid rgba(37,99,235,0.25); }
+.projects-cta { text-align: center; }
+
+/* ═══════════════════════════════════════
+   CLIENTS MARQUEE
+═══════════════════════════════════════ */
+#clients { background: #fff; padding: 64px 0; border-top: 1px solid #f0f4ff; border-bottom: 1px solid #f0f4ff; overflow: hidden; }
+.clients-label { text-align: center; margin-bottom: 36px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #9ca3af; }
+.marquee-track { display: flex; overflow: hidden; user-select: none; position: relative; }
+.marquee-track::before, .marquee-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.marquee-track::before { left: 0; background: linear-gradient(to right, #fff, transparent); }
+.marquee-track::after  { right: 0; background: linear-gradient(to left, #fff, transparent); }
+.marquee-inner { display: flex; align-items: center; gap: 56px; animation: marqueeScroll 28s linear infinite; white-space: nowrap; }
+.marquee-track:hover .marquee-inner { animation-play-state: paused; }
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+/* FIX 12: Improved client logo treatment */
+.client-logo {
+  display: flex; align-items: center; gap: 8px; justify-content: center;
+  height: 40px; min-width: 120px; flex-shrink: 0;
+  opacity: 0.38; transition: opacity 0.3s;
+}
+.client-logo:hover { opacity: 0.78; }
+.client-logo-mark {
+  width: 22px; height: 22px; border-radius: 5px;
+  background: #374151; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.client-logo-mark svg { width: 12px; height: 12px; color: #fff; }
+.client-logo-text {
+  font-family: 'Sora', sans-serif; font-size: 0.875rem; font-weight: 700;
+  color: #1f2937; letter-spacing: -0.02em; white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   TESTIMONIALS SECTION
+═══════════════════════════════════════ */
+#testimonials {
+  background: linear-gradient(150deg, #091529 0%, #0d2045 50%, #0f2655 100%);
+  padding: 100px 0; position: relative; overflow: hidden;
+}
+#testimonials::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(37,99,235,0.4), transparent);
+}
+.testimonials-header { text-align: center; max-width: 560px; margin: 0 auto 56px; }
+.testi-eyebrow { color: #60a5fa; }
+.testi-heading { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.025em; color: #fff; margin-bottom: 14px; }
+.testi-sub { font-size: 1rem; color: rgba(255,255,255,0.52); line-height: 1.65; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testi-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 20px; padding: 32px; display: flex; flex-direction: column;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s; position: relative;
+}
+.testi-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(37,99,235,0.35); transform: translateY(-4px); }
+.testi-quote-icon { font-size: 4rem; line-height: 1; color: rgba(37,99,235,0.3); font-family: Georgia, serif; margin-bottom: 12px; margin-top: -8px; }
+.testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
+.testi-star { color: var(--gold); font-size: 0.85rem; }
+.testi-star.empty { color: rgba(255,255,255,0.2); }
+.testi-text { font-size: 0.9rem; line-height: 1.75; color: rgba(255,255,255,0.72); flex: 1; margin-bottom: 24px; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 14px; }
+/* FIX 9: Initials avatars for testimonials */
+.testi-avatar-init {
+  width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 700;
+  border: 2px solid rgba(37,99,235,0.4);
+}
+.tavi1 { background: rgba(37,99,235,0.2); color: #93c5fd; }
+.tavi2 { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+.tavi3 { background: rgba(245,158,11,0.15); color: #fcd34d; }
+.testi-name { font-family: 'Sora', sans-serif; font-size: 0.875rem; font-weight: 700; color: #fff; }
+.testi-role { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+/* ═══════════════════════════════════════
+   CONTACT SECTION
+═══════════════════════════════════════ */
+#contact { background: #fff; padding: 100px 0; color: var(--navy); position: relative; overflow: hidden; }
+#contact::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+  background: linear-gradient(135deg, #f0f6ff 0%, #e8f0ff 100%);
+  clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%); pointer-events: none;
+}
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+.contact-eyebrow { color: var(--accent); }
+.contact-heading { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.025em; color: var(--navy); margin-bottom: 20px; }
+.contact-sub { font-size: 1rem; color: #6b7280; line-height: 1.75; margin-bottom: 40px; }
+.contact-info { display: flex; flex-direction: column; gap: 20px; }
+.contact-info-item { display: flex; align-items: center; gap: 16px; }
+.ci-icon {
+  width: 44px; height: 44px; border-radius: 12px; background: rgba(37,99,235,0.09);
+  border: 1px solid rgba(37,99,235,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ci-icon svg { color: var(--accent); }
+.ci-label { font-size: 0.75rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.08em; }
+.ci-value { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-top: 2px; }
+.contact-form-wrap {
+  background: #fff; border-radius: 24px; padding: 40px;
+  box-shadow: 0 16px 64px rgba(11,28,61,0.12); border: 1px solid #e5edff;
+  transition: box-shadow 0.3s;
+}
+.form-heading { font-family: 'Sora', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.form-label { font-size: 0.8rem; font-weight: 600; color: #374151; letter-spacing: 0.02em; }
+.form-input, .form-select, .form-textarea {
+  padding: 12px 16px; border-radius: 10px; border: 1.5px solid #dde5f7;
+  background: #f8faff; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+  color: var(--navy); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+.form-textarea { resize: vertical; min-height: 110px; }
+.form-input::placeholder, .form-textarea::placeholder { color: #9ca3af; }
+.form-submit {
+  width: 100%; padding: 15px 28px; border-radius: 50px;
+  background: linear-gradient(135deg, var(--accent), #1d4ed8);
+  color: #fff; font-size: 0.95rem; font-weight: 700;
+  border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(37,99,235,0.3);
+}
+.form-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(37,99,235,0.4); }
+.form-submit:disabled { opacity: 0.8; cursor: not-allowed; transform: none; }
+/* FIX 17: Button spinner for async form submission */
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-spinner {
+  display: inline-block; width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff;
+  border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer { background: #070e1f; padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 48px; margin-bottom: 56px; }
+.footer-brand-name { font-family: 'Sora', sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 14px; }
+.footer-brand-desc { font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.75; max-width: 300px; margin-bottom: 24px; }
+.footer-socials { display: flex; gap: 10px; }
+.footer-social {
+  width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+  text-decoration: none; transition: background 0.2s, border-color 0.2s;
+}
+.footer-social:hover { background: rgba(37,99,235,0.3); border-color: rgba(37,99,235,0.4); }
+.footer-social svg { color: rgba(255,255,255,0.6); width: 16px; height: 16px; }
+.footer-col-title { font-family: 'Sora', sans-serif; font-size: 0.8rem; font-weight: 700; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.85); }
+.footer-links button {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-size: 0.875rem; color: rgba(255,255,255,0.45); font-family: 'DM Sans', sans-serif;
+  text-align: left; transition: color 0.2s;
+}
+.footer-links button:hover { color: rgba(255,255,255,0.85); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.footer-legal a:hover { color: rgba(255,255,255,0.6); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+  .courses-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .about-float-card { left: -10px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .btn-nav { display: none; }
+  #hamburger { display: flex; }
+  .hero-headline { font-size: clamp(2rem, 7.5vw, 2.8rem); }
+  .cta-group { flex-direction: column; align-items: flex-start; }
+  /* FIX 8: Mobile CTAs no longer stretch icon to far right */
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item::after { display: none !important; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-img-col { order: -1; display: flex; flex-direction: column; }
+  /* FIX 11: Float card visible on mobile, displayed inline below image */
+  .about-float-card {
+    position: relative; bottom: auto; left: auto;
+    width: 100%; min-width: unset; margin-top: 20px;
+  }
+  .about-img-col::before { display: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .courses-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  #contact::before { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .academy-header { flex-direction: column; align-items: flex-start; }
+  .form-row { grid-template-columns: 1fr; }
+  .wa-fab { bottom: 20px; right: 20px; }
+  .toast { right: 20px; }
+}
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .courses-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<header id="navbar" role="banner">
+  <nav class="nav-inner" aria-label="Primary navigation">
+    <a href="#" class="nav-logo" aria-label="P&A Consulting Limited home">P&amp;A Consulting Limited</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#academy">Academy</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li style="margin-left:10px"><a href="#contact" class="btn-nav">Get In Touch</a></li>
+    </ul>
+    <button id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- FIX 6: Outside-click overlay behind mobile menu -->
+<div id="menu-overlay" aria-hidden="true"></div>
+
+<nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="#hero" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#academy" onclick="closeMenu()">Academy</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#contact" class="btn-mob-cta" onclick="closeMenu()">Get In Touch</a>
+</nav>
+
+
+<main>
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section id="hero" aria-label="Hero section">
+  <div class="hero-bg" role="presentation" aria-hidden="true"></div>
+  <div class="hero-overlay" role="presentation" aria-hidden="true"></div>
+  <div class="hero-grain" role="presentation" aria-hidden="true"></div>
+  <div class="hero-content">
+    <h1 class="hero-headline anim-1">
+      Delivering Projects.<br />Building Capacity.<br />Strengthening Institutions.
+    </h1>
+    <p class="hero-sub anim-2">
+      We help organisations plan, structure and deliver programmes through practical project
+      management, infrastructure advisory, capacity building and institutional support.
+    </p>
+    <div class="cta-group anim-3">
+      <a href="#contact" class="btn-primary" aria-label="Schedule a consultation">
+        Schedule A Consultation
+        <span class="btn-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </a>
+      <a href="#services" class="btn-secondary" aria-label="Explore our services">
+        Explore Services
+        <svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+    <!-- FIX 9: Self-hosted initials avatars instead of randomuser.me -->
+    <div class="trust-bar anim-4">
+      <div class="avatar-stack" aria-hidden="true">
+        <div class="avatar-init av1">JA</div>
+        <div class="avatar-init av2">MC</div>
+        <div class="avatar-init av3">TO</div>
+      </div>
+      <div class="trust-text">
+        <div class="stars" aria-label="5 out of 5 stars" role="img">
+          <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span><span class="star" aria-hidden="true">★</span>
+          <span class="star" aria-hidden="true">★</span>
+        </div>
+        <p class="trust-label">Trusted by <strong>3000+</strong><br/>Industry Professionals</p>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     STATS / COUNTER
+══════════════════════════════════ -->
+<section id="stats" aria-label="Our impact in numbers">
+  <div class="section-wrap">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="stat-number"><span class="counter" data-target="18">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Industries Served</div>
+        </div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <div class="stat-number"><span class="counter" data-target="32">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Countries Reached</div>
+        </div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div class="stat-number"><span class="counter" data-target="240">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <div class="stat-number"><span class="counter" data-target="15">0</span><span class="stat-suffix">+</span></div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     ABOUT
+══════════════════════════════════ -->
+<section id="about" aria-label="About P&A Consulting">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-text-col">
+        <div class="section-tag about-eyebrow reveal"><span class="tag-dot"></span> Who We Are</div>
+        <h2 class="about-heading reveal reveal-delay-1">A Trusted Partner in Institutional Excellence</h2>
+        <p class="about-body reveal reveal-delay-2" style="color:#4b5563">
+          P&amp;A Consulting Limited is a multi-disciplinary advisory firm with deep expertise in project management, infrastructure development, and institutional capacity building across Africa and beyond.
+        </p>
+        <p class="about-body reveal reveal-delay-2" style="color:#6b7280;margin-top:-8px">
+          Founded on a commitment to practical, results-driven solutions, we work alongside governments, development organisations, and the private sector to design and implement programmes that create lasting impact.
+        </p>
+        <div class="about-pillars reveal reveal-delay-3">
+          <div class="about-pillar">
+            <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="pillar-text"><h4>Results-Driven</h4><p>Measurable outcomes at every stage</p></div>
+          </div>
+          <div class="about-pillar">
+            <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="pillar-text"><h4>Expert Team</h4><p>Seasoned professionals across sectors</p></div>
+          </div>
+          <div class="about-pillar">
+            <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="pillar-text"><h4>Pan-African Reach</h4><p>Operating across 32+ countries</p></div>
+          </div>
+          <div class="about-pillar">
+            <div class="pillar-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="pillar-text"><h4>Trusted &amp; Ethical</h4><p>Integrity at the core of every project</p></div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-4">
+          <a href="#contact" class="btn-outline-navy">
+            Learn More About Us
+            <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="about-img-col reveal reveal-delay-2">
+        <div class="about-img-main">
+          <!-- FIX 16: onerror handler on every image -->
+          <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&fit=crop"
+            alt="P&A Consulting team in a strategic meeting"
+            loading="lazy"
+            onerror="this.style.visibility='hidden'"
+          />
+        </div>
+        <!-- FIX 11: Float card now also visible on mobile (position:relative via media query) -->
+        <div class="about-float-card">
+          <div class="float-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="float-card-text">
+            <div class="fct-num">240+</div>
+            <div class="fct-label">Projects Delivered<br/>Across Africa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     SERVICES
+══════════════════════════════════ -->
+<section id="services" aria-label="Our services">
+  <div class="section-wrap">
+    <div class="services-header reveal">
+      <div class="section-tag services-eyebrow" style="justify-content:center"><span class="tag-dot" style="background:#60a5fa"></span> What We Do</div>
+      <h2 class="services-heading">Core Services We Offer</h2>
+      <p class="services-sub">From planning to delivery, we provide end-to-end solutions that transform organisations and create sustainable impact.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="svc-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3 class="svc-title">Project Management</h3>
+        <p class="svc-desc">End-to-end project planning, execution, monitoring and evaluation. We apply globally recognised frameworks to ensure every programme is delivered on time, within scope, and on budget.</p>
+        <!-- FIX 15: Service "Learn more" pre-selects the right option in contact form -->
+        <button class="svc-link" onclick="goToService('Project Management')">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <div class="svc-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        </div>
+        <h3 class="svc-title">Infrastructure Advisory</h3>
+        <p class="svc-desc">Strategic advisory on infrastructure planning, procurement, and implementation. We help clients design investment-ready programmes and navigate complex regulatory environments.</p>
+        <button class="svc-link" onclick="goToService('Infrastructure Advisory')">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <div class="svc-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="svc-title">Capacity Building</h3>
+        <p class="svc-desc">Bespoke training and organisational development programmes that strengthen individual and institutional capabilities for long-term self-sufficiency and growth.</p>
+        <button class="svc-link" onclick="goToService('Capacity Building')">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">04</div>
+        <div class="svc-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3 class="svc-title">Institutional Support</h3>
+        <p class="svc-desc">Governance reform, policy development, and organisational restructuring services that help public and private institutions become more effective, accountable, and resilient.</p>
+        <button class="svc-link" onclick="goToService('Institutional Support')">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="services-cta reveal">
+      <button class="btn-outline-white" onclick="goToService('')">
+        Enquire About All Services
+        <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     ACADEMY
+══════════════════════════════════ -->
+<section id="academy" aria-label="P&A Academy">
+  <div class="section-wrap">
+    <div class="academy-header">
+      <div>
+        <div class="section-tag academy-eyebrow reveal"><span class="tag-dot"></span> P&amp;A Academy</div>
+        <h2 class="academy-heading reveal reveal-delay-1">Featured Courses</h2>
+        <p class="academy-sub reveal reveal-delay-2">Practical, professional training designed for today's leaders and practitioners.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <!-- FIX 14: Dead link replaced with toast notification -->
+        <button class="btn-outline-navy" onclick="showToast('Full academy portal coming soon!')">
+          Visit Academy
+          <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- FIX 13: Currency toggle (USD / NGN) -->
+    <div class="currency-row reveal">
+      <button class="currency-btn" id="currency-btn" onclick="toggleCurrency()">₦ View in NGN</button>
+      <span class="currency-note">Prices shown in USD. Toggle for NGN equivalent.</span>
+    </div>
+
+    <div class="courses-grid">
+      <article class="course-card reveal">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=75&fit=crop" alt="Project Management Fundamentals" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <span class="course-badge badge-pop">Popular</span>
+        </div>
+        <div class="course-body">
+          <div class="course-category">Project Management</div>
+          <h3 class="course-title">Project Management Fundamentals for Practitioners</h3>
+          <div class="course-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 6 Weeks</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 340 Enrolled</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">$299</div>
+            <!-- FIX 15: Enrol Now pre-fills contact form with course name -->
+            <button class="course-enroll" onclick="enrollCourse('Project Management Fundamentals for Practitioners')">Enrol Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card reveal reveal-delay-1">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=75&fit=crop" alt="Infrastructure Planning" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <span class="course-badge badge-new">New</span>
+        </div>
+        <div class="course-body">
+          <div class="course-category">Infrastructure</div>
+          <h3 class="course-title">Infrastructure Planning &amp; Investment Advisory</h3>
+          <div class="course-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8 Weeks</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 128 Enrolled</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">$449</div>
+            <button class="course-enroll" onclick="enrollCourse('Infrastructure Planning & Investment Advisory')">Enrol Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card reveal reveal-delay-2">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=600&q=75&fit=crop" alt="Governance & Institutional Reform" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <span class="course-badge badge-adv">Advanced</span>
+        </div>
+        <div class="course-body">
+          <div class="course-category">Governance</div>
+          <h3 class="course-title">Governance Reform &amp; Institutional Strengthening</h3>
+          <div class="course-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 10 Weeks</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 215 Enrolled</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">$399</div>
+            <button class="course-enroll" onclick="enrollCourse('Governance Reform & Institutional Strengthening')">Enrol Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="course-card reveal reveal-delay-3">
+        <div class="course-img">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=75&fit=crop" alt="M&E Masterclass" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <span class="course-badge badge-pro">Pro</span>
+        </div>
+        <div class="course-body">
+          <div class="course-category">Monitoring &amp; Evaluation</div>
+          <h3 class="course-title">M&amp;E Masterclass: Results-Based Management</h3>
+          <div class="course-meta">
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 Weeks</span>
+            <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 189 Enrolled</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">$349</div>
+            <button class="course-enroll" onclick="enrollCourse('M&E Masterclass: Results-Based Management')">Enrol Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="academy-cta reveal">
+      <button class="btn-solid-accent" onclick="showToast('Full academy portal coming soon!')">
+        Visit The Academy
+        <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     PROJECTS
+══════════════════════════════════ -->
+<section id="projects" aria-label="Featured projects">
+  <div class="section-wrap">
+    <div class="projects-header reveal">
+      <div class="section-tag projects-eyebrow" style="justify-content:center"><span class="tag-dot" style="background:#60a5fa"></span> Our Work</div>
+      <h2 class="projects-heading">Featured Projects</h2>
+      <p class="projects-sub">A selection of transformative programmes we have designed, managed, and delivered for clients across the continent.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card reveal">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=75&fit=crop" alt="Urban Infrastructure Rehabilitation" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <div class="project-img-overlay"></div>
+          <span class="project-sector">Infrastructure</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Urban Infrastructure Rehabilitation Programme</h3>
+          <p class="project-desc">Full project management and technical oversight for a $45M urban road and drainage rehabilitation initiative spanning three municipalities.</p>
+          <div class="project-tags">
+            <span class="project-tag">Project Management</span>
+            <span class="project-tag">Civil Infrastructure</span>
+            <span class="project-tag">Government</span>
+          </div>
+        </div>
+      </article>
+      <article class="project-card reveal reveal-delay-1">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=700&q=75&fit=crop" alt="Public Sector Capacity Programme" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <div class="project-img-overlay"></div>
+          <span class="project-sector">Capacity Building</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">National Public Sector Capacity Programme</h3>
+          <p class="project-desc">Designed and delivered a comprehensive capacity building programme for 1,200 civil servants across 14 government ministries.</p>
+          <div class="project-tags">
+            <span class="project-tag">Training &amp; Development</span>
+            <span class="project-tag">Public Sector</span>
+            <span class="project-tag">Policy</span>
+          </div>
+        </div>
+      </article>
+      <article class="project-card reveal reveal-delay-2">
+        <div class="project-img">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=75&fit=crop" alt="Development Finance Institution Advisory" loading="lazy" onerror="this.style.visibility='hidden'"/>
+          <div class="project-img-overlay"></div>
+          <span class="project-sector">Institutional Advisory</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Development Finance Institution Reform</h3>
+          <p class="project-desc">End-to-end institutional restructuring advisory for a regional development bank, improving governance frameworks and portfolio performance.</p>
+          <div class="project-tags">
+            <span class="project-tag">Institutional Reform</span>
+            <span class="project-tag">Finance</span>
+            <span class="project-tag">Governance</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="projects-cta reveal">
+      <!-- FIX 14: Dead link replaced with toast -->
+      <button class="btn-outline-white" onclick="showToast('More case studies coming soon!')">
+        View All Projects
+        <svg class="arr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     CLIENTS MARQUEE
+══════════════════════════════════ -->
+<section id="clients" aria-label="Companies we've worked with">
+  <p class="clients-label">Organisations We've Partnered With</p>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-inner" id="marquee-inner">
+      <!-- FIX 12: Improved logo treatment with mark + wordmark -->
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect width="12" height="12" rx="2" fill="#fff" fill-opacity=".2"/><path d="M2 9L6 3l4 6H2z" fill="#fff"/></svg></div><span class="client-logo-text">World Bank</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#fff" stroke-width="1.5"/><path d="M6 2v8M2 6h8" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">African Union</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1L1 4.5v3L6 11l5-3.5v-3L6 1z" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">UNDP</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1.5" stroke="#fff" stroke-width="1.2"/><path d="M4 3V2a2 2 0 014 0v1" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">AfDB</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#fff" stroke-width="1.2"/><path d="M4 6h4M6 4v4" stroke="#fff" stroke-width="1.5"/></svg></div><span class="client-logo-text">USAID</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10V5l4-3 4 3v5" stroke="#fff" stroke-width="1.2"/><rect x="4" y="7" width="4" height="3" rx="0.5" stroke="#fff" stroke-width="1"/></svg></div><span class="client-logo-text">IFC</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6a5 5 0 0110 0" stroke="#fff" stroke-width="1.2"/><path d="M1 6a5 5 0 0110 0" stroke="#fff" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#fff"/></svg></div><span class="client-logo-text">FCDO</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="6.5" y="1" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="1" y="6.5" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="6.5" y="6.5" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/></svg></div><span class="client-logo-text">EU Commission</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L6 2l4 8" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/><path d="M3.5 7h5" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">GIZ</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#fff" stroke-width="1.2"/><path d="M3.5 6a2.5 2.5 0 005 0" stroke="#fff" stroke-width="1"/></svg></div><span class="client-logo-text">ECOWAS</span></div>
+      <!-- Duplicate set B for seamless loop -->
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect width="12" height="12" rx="2" fill="#fff" fill-opacity=".2"/><path d="M2 9L6 3l4 6H2z" fill="#fff"/></svg></div><span class="client-logo-text">World Bank</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#fff" stroke-width="1.5"/><path d="M6 2v8M2 6h8" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">African Union</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1L1 4.5v3L6 11l5-3.5v-3L6 1z" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">UNDP</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1.5" stroke="#fff" stroke-width="1.2"/><path d="M4 3V2a2 2 0 014 0v1" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">AfDB</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#fff" stroke-width="1.2"/><path d="M4 6h4M6 4v4" stroke="#fff" stroke-width="1.5"/></svg></div><span class="client-logo-text">USAID</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10V5l4-3 4 3v5" stroke="#fff" stroke-width="1.2"/><rect x="4" y="7" width="4" height="3" rx="0.5" stroke="#fff" stroke-width="1"/></svg></div><span class="client-logo-text">IFC</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M1 6a5 5 0 0110 0" stroke="#fff" stroke-width="1.2"/><circle cx="6" cy="6" r="1.5" fill="#fff"/></svg></div><span class="client-logo-text">FCDO</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="6.5" y="1" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="1" y="6.5" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/><rect x="6.5" y="6.5" width="4.5" height="4.5" rx="1" fill="#fff" fill-opacity=".6"/></svg></div><span class="client-logo-text">EU Commission</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><path d="M2 10L6 2l4 8" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/><path d="M3.5 7h5" stroke="#fff" stroke-width="1.2"/></svg></div><span class="client-logo-text">GIZ</span></div>
+      <div class="client-logo"><div class="client-logo-mark"><svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="4" stroke="#fff" stroke-width="1.2"/><path d="M3.5 6a2.5 2.5 0 005 0" stroke="#fff" stroke-width="1"/></svg></div><span class="client-logo-text">ECOWAS</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════ -->
+<section id="testimonials" aria-label="Client testimonials">
+  <div class="section-wrap">
+    <div class="testimonials-header reveal">
+      <div class="section-tag testi-eyebrow" style="justify-content:center"><span class="tag-dot" style="background:#60a5fa"></span> Testimonials</div>
+      <h2 class="testi-heading">What Our Clients Say</h2>
+      <p class="testi-sub">Real feedback from the governments, organisations, and professionals we've had the privilege of partnering with.</p>
+    </div>
+    <div class="testi-grid">
+      <!-- FIX 10: Varied star ratings (not all 5/5) -->
+      <!-- FIX 9: Initials avatars instead of randomuser.me -->
+      <div class="testi-card reveal">
+        <div class="testi-quote-icon">&ldquo;</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars">
+          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+        </div>
+        <p class="testi-text">P&amp;A Consulting transformed how our ministry approaches project delivery. Their team embedded with us, transferred knowledge, and left us with systems that continue to deliver results long after the engagement ended.</p>
+        <div class="testi-author">
+          <div class="testi-avatar-init tavi1" aria-hidden="true">KM</div>
+          <div>
+            <div class="testi-name">Dr. Kofi Mensah</div>
+            <div class="testi-role">Director General, Ministry of Works</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote-icon">&ldquo;</div>
+        <div class="testi-stars" aria-label="5 out of 5 stars">
+          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+        </div>
+        <p class="testi-text">The infrastructure advisory P&amp;A provided was instrumental in securing our funding approvals. Their ability to translate technical complexity into bankable propositions is unmatched in the region.</p>
+        <div class="testi-author">
+          <div class="testi-avatar-init tavi2" aria-hidden="true">AD</div>
+          <div>
+            <div class="testi-name">Amina Diallo</div>
+            <div class="testi-role">CEO, Regional Infrastructure Fund</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote-icon">&ldquo;</div>
+        <!-- Varied to 4 stars for credibility -->
+        <div class="testi-stars" aria-label="4 out of 5 stars">
+          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star empty">★</span>
+        </div>
+        <p class="testi-text">The Academy's project management course was exactly what our team needed. Practical, immediately applicable, and facilitated by people who have actually done the work at scale. Highly recommended.</p>
+        <div class="testi-author">
+          <div class="testi-avatar-init tavi3" aria-hidden="true">EO</div>
+          <div>
+            <div class="testi-name">Emmanuel Osei</div>
+            <div class="testi-role">Programme Director, USAID Nigeria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section id="contact" aria-label="Contact us">
+  <div class="section-wrap">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-tag contact-eyebrow reveal"><span class="tag-dot"></span> Get In Touch</div>
+        <h2 class="contact-heading reveal reveal-delay-1">Let's Work Together</h2>
+        <p class="contact-sub reveal reveal-delay-2">
+          Whether you have a project in mind, want to explore our services, or simply want to learn more about how we can support your organisation — we'd love to hear from you.
+        </p>
+        <div class="contact-info reveal reveal-delay-3">
+          <div class="contact-info-item">
+            <div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><div class="ci-label">Office</div><div class="ci-value">Lagos, Nigeria · Accra, Ghana</div></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <!-- FIX 5: Replace with your actual email before going live -->
+            <div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:hello@paconsulting.com" style="color:inherit;text-decoration:none">hello@paconsulting.com</a></div></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.82-.82a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <!-- FIX 5: Replace with your actual phone number before going live -->
+            <div><div class="ci-label">Phone</div><div class="ci-value"><a href="tel:+2348000000000" style="color:inherit;text-decoration:none">+234 800 000 0000</a></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIX 3: Real form submission via FormSubmit.co AJAX -->
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <div class="form-heading">Send Us a Message</div>
+        <!--
+          HOW TO ACTIVATE:
+          1. Replace 'hello@paconsulting.com' in handleFormSubmit() with your real email.
+          2. Submit the form once — FormSubmit will send you a one-time verification email.
+          3. Click the link in that email. All future submissions will then go straight to your inbox.
+        -->
+        <form onsubmit="handleFormSubmit(event)" novalidate>
+          <!-- Honeypot anti-spam field (hidden from users) -->
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-name">First Name</label>
+              <!-- FIX 4: Added name attributes — required for FormSubmit to include fields in email -->
+              <input class="form-input" type="text" id="f-name" name="first_name" placeholder="John" required autocomplete="given-name"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-lname">Last Name</label>
+              <input class="form-input" type="text" id="f-lname" name="last_name" placeholder="Doe" required autocomplete="family-name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-email">Email Address</label>
+            <input class="form-input" type="email" id="f-email" name="email" placeholder="john@organisation.com" required autocomplete="email"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-service">Service of Interest</label>
+            <select class="form-select" id="f-service" name="service_interest">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Project Management</option>
+              <option>Infrastructure Advisory</option>
+              <option>Capacity Building</option>
+              <option>Institutional Support</option>
+              <option>Academy / Training</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-msg">Message</label>
+            <textarea class="form-textarea" id="f-msg" name="message" placeholder="Tell us about your project or enquiry…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">P&amp;A Consulting Limited</div>
+        <p class="footer-brand-desc">Delivering projects, building capacity, and strengthening institutions across Africa and beyond since 2010.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="footer-social" aria-label="Twitter / X">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 16.12 0c-2.5 0-4.52 2.02-4.52 4.52 0 .35.04.7.11 1.03C7.69 5.37 4.07 3.58 1.64.9a4.5 4.5 0 0 0-.61 2.27c0 1.57.8 2.95 2.01 3.76a4.5 4.5 0 0 1-2.05-.57v.06c0 2.19 1.56 4.02 3.63 4.44a4.55 4.55 0 0 1-2.04.08c.57 1.79 2.23 3.09 4.2 3.13A9.07 9.07 0 0 1 0 19.54 12.8 12.8 0 0 0 6.92 21.5c8.3 0 12.84-6.88 12.84-12.85 0-.2 0-.39-.01-.58A9.17 9.17 0 0 0 22 5.92a9 9 0 0 1-2.6.71L23 3z"/></svg>
+          </a>
+          <a href="#" class="footer-social" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><button onclick="showToast('Team page coming soon!')">Our Team</button></li>
+          <li><button onclick="showToast('Careers page coming soon!')">Careers</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Academy</div>
+        <ul class="footer-links">
+          <li><button onclick="showToast('Full academy portal coming soon!')">All Courses</button></li>
+          <li><button onclick="enrollCourse('Project Management Fundamentals')">Project Management</button></li>
+          <li><button onclick="enrollCourse('Infrastructure Planning & Investment Advisory')">Infrastructure</button></li>
+          <li><button onclick="enrollCourse('Governance Reform & Institutional Strengthening')">Governance</button></li>
+          <li><button onclick="enrollCourse('M&E Masterclass: Results-Based Management')">M&amp;E</button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#">Lagos, Nigeria</a></li>
+          <li><a href="#">Accra, Ghana</a></li>
+          <li><a href="mailto:hello@paconsulting.com">hello@paconsulting.com</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; <span id="year"></span> P&amp;A Consulting Limited. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FIX 7: WhatsApp floating action button -->
+<!-- Replace +2348000000000 with the firm's real WhatsApp number -->
+<a href="https://wa.me/2348000000000?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20P%26A%20Consulting%20services."
+   class="wa-fab" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+  <span class="wa-fab-label">Chat on WhatsApp</span>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.528 5.855L0 24l6.335-1.505A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.65-.502-5.176-1.382l-.371-.22-3.763.894.95-3.664-.242-.386A9.943 9.943 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+/* ── Auto-update footer year ── */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+
+/* ── Hero Ken-Burns on load ── */
+window.addEventListener('load', () => document.getElementById('hero').classList.add('loaded'));
+
+/* ── Hamburger / mobile menu ── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuOverlay = document.getElementById('menu-overlay');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  mobileMenu.classList.add('open');
+  menuOverlay.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  menuOverlay.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+/* FIX 6: Clicking the overlay closes the menu */
+menuOverlay.addEventListener('click', closeMenu);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { closeMenu(); hamburger.focus(); }
+});
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMenu(); });
+
+/* ── FIX 5: Scroll-spy — active nav link follows the current section ── */
+const spySections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a, #mobile-menu a');
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.id;
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const isActive = href === '#' + id || (id === 'hero' && href === '#hero');
+      link.classList.toggle('active', isActive);
+      isActive ? link.setAttribute('aria-current', 'page') : link.removeAttribute('aria-current');
+    });
+  });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+spySections.forEach(s => spyObserver.observe(s));
+
+/* ── FIX 2: Animated counter — guarded against double-fire ── */
+function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+function animateCounter(el) {
+  if (el.dataset.animated) return; // guard: only run once
+  el.dataset.animated = 'true';
+  const target   = parseInt(el.getAttribute('data-target'), 10);
+  const duration = 1800;
+  const start    = performance.now();
+  function tick(now) {
+    const elapsed  = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    el.textContent = Math.round(easeOutQuart(progress) * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target.toLocaleString();
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ── Single IntersectionObserver for both reveals AND counters ── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    entry.target.querySelectorAll('.counter').forEach(animateCounter);
+    io.unobserve(entry.target);
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── FIX 14: Coming-soon toast ── */
+function showToast(msg) {
+  document.querySelectorAll('.toast').forEach(t => t.remove()); // clear stacked toasts
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.innerHTML = `
+    <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    ${msg}
+  `;
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 2800);
+}
+
+/* ── FIX 15: Service pre-selection — scroll to contact and highlight the relevant service ── */
+function goToService(service) {
+  const select = document.getElementById('f-service');
+  if (select && service) select.value = service;
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    const form = document.querySelector('.contact-form-wrap');
+    if (form) {
+      form.style.boxShadow = '0 0 0 3px rgba(37,99,235,0.25), 0 16px 64px rgba(11,28,61,0.12)';
+      setTimeout(() => { form.style.boxShadow = ''; }, 1800);
+    }
+  }, 600);
+}
+
+/* ── FIX 15: Enrol — pre-fills service + message in the contact form ── */
+function enrollCourse(courseName) {
+  const select = document.getElementById('f-service');
+  const msg    = document.getElementById('f-msg');
+  if (select) select.value = 'Academy / Training';
+  if (msg)    msg.value    = `I am interested in enrolling in the "${courseName}" course. Please send me more details.`;
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    const form = document.querySelector('.contact-form-wrap');
+    if (form) {
+      form.style.boxShadow = '0 0 0 3px rgba(37,99,235,0.25), 0 16px 64px rgba(11,28,61,0.12)';
+      setTimeout(() => { form.style.boxShadow = ''; }, 1800);
+    }
+  }, 600);
+}
+
+/* ── FIX 13: Currency toggle (USD ↔ NGN) at ~1,600 NGN/USD ── */
+const coursePrices = {
+  USD: ['$299', '$449', '$399', '$349'],
+  NGN: ['₦478,400', '₦718,400', '₦638,400', '₦558,400']
+};
+let currentCurrency = 'USD';
+function toggleCurrency() {
+  currentCurrency = currentCurrency === 'USD' ? 'NGN' : 'USD';
+  document.querySelectorAll('.course-price').forEach((el, i) => {
+    el.textContent = coursePrices[currentCurrency][i];
+  });
+  const btn = document.getElementById('currency-btn');
+  if (btn) btn.textContent = currentCurrency === 'USD' ? '₦ View in NGN' : '$ View in USD';
+}
+
+/* ── FIX 3: Contact form — real submission via FormSubmit.co AJAX ──
+   ⚠  BEFORE GOING LIVE:
+   1. Replace 'hello@paconsulting.com' below with your actual email address.
+   2. Open the site, fill the form, and submit once.
+   3. FormSubmit will email you a one-time activation link — click it.
+   4. All future submissions will land directly in your inbox, formatted as a table.
+*/
+async function handleFormSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('.form-submit');
+  const origHTML = btn.innerHTML;
+
+  btn.disabled = true;
+  btn.innerHTML = `<span class="btn-spinner"></span> Sending…`;
+
+  try {
+    const data = new FormData(form);
+    data.append('_subject', 'New Enquiry — P&A Consulting Website');
+    data.append('_template', 'table');
+
+    const res = await fetch('https://formsubmit.co/ajax/hello@paconsulting.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+
+    const result = await res.json();
+
+    if (result.success === 'true' || result.success === true) {
+      btn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Message Sent — we'll be in touch soon!
+      `;
+      btn.style.background = 'linear-gradient(135deg,#059669,#047857)';
+      form.reset();
+      // Restore button after 8s so the form can be used again
+      setTimeout(() => {
+        btn.innerHTML = origHTML;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 8000);
+    } else {
+      throw new Error('Submission rejected');
+    }
+  } catch (err) {
+    btn.innerHTML = `⚠ Something went wrong — please try again`;
+    btn.style.background = 'linear-gradient(135deg,#dc2626,#b91c1c)';
+    setTimeout(() => {
+      btn.innerHTML = origHTML;
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 4000);
+  }
+}
+</script>
+
+</body>
+</html>
