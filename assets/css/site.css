@@ -917,7 +917,7 @@ footer { background: #070e1f; padding: 64px 0 32px; border-top: 1px solid rgba(2
 .principle-card p { color:#667085; line-height:1.7; font-size:.92rem; }
 .founder-section { background:#fff; color:var(--navy); padding:96px 0; }
 .founder-panel { display:grid; grid-template-columns:.8fr 1.2fr; gap:52px; align-items:center; background:#f8faff; border:1px solid #e5edff; border-radius:28px; padding:38px; overflow:hidden; }
-.founder-portrait { min-height:420px; border-radius:22px; background:linear-gradient(145deg,rgba(11,28,61,.92),rgba(37,99,235,.70)), url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=80&fit=crop') center/cover; position:relative; box-shadow:0 24px 54px rgba(11,28,61,.20); }
+.founder-portrait { min-height:420px; border-radius:22px; background:linear-gradient(145deg,rgba(11,28,61,.92),rgba(37,99,235,.70)), url('../img/philippp.png') center/cover; position:relative; box-shadow:0 24px 54px rgba(11,28,61,.20); }
 .founder-badge { position:absolute; left:22px; bottom:22px; right:22px; background:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.7); backdrop-filter:blur(16px); border-radius:18px; padding:18px; }
 .founder-badge strong { font-family:'Sora', sans-serif; color:var(--navy); display:block; margin-bottom:4px; }
 .founder-badge span { color:#667085; font-size:.86rem; }
