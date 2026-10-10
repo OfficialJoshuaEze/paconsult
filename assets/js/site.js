@@ -146,23 +146,9 @@ function goToService(service) {
 }
 
 function enrollCourse(courseName) {
-  const select = document.getElementById('f-service');
-  const msg = document.getElementById('f-msg');
-  if (select) select.value = 'Academy / Training';
-  if (msg) msg.value = `I am interested in enrolling in the "${courseName}" course. Please send me more details.`;
-  goToService('Academy / Training');
-}
-
-const coursePrices = {
-  USD: ['$299', '$449', '$399', '$349'],
-  NGN: ['₦478,400', '₦718,400', '₦638,400', '₦558,400']
-};
-let currentCurrency = 'USD';
-function toggleCurrency() {
-  currentCurrency = currentCurrency === 'USD' ? 'NGN' : 'USD';
-  document.querySelectorAll('.course-price').forEach((el, i) => { if (coursePrices[currentCurrency][i]) el.textContent = coursePrices[currentCurrency][i]; });
-  const btn = document.getElementById('currency-btn');
-  if (btn) btn.textContent = currentCurrency === 'USD' ? '₦ View in NGN' : '$ View in USD';
+  const phone = '2349077070777';
+  const text = encodeURIComponent(`Hello, I'd like to enrol in the "${courseName}" course. Please provide more details on registration and schedule.`);
+  window.open(`https://wa.me/${phone}?text=${text}`, '_blank', 'noopener,noreferrer');
 }
 
 async function handleFormSubmit(e) {
